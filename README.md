@@ -25,3 +25,5 @@ To use these examples in your own AAD B2C tenant, you will need to make the foll
  3. The user is logging in from a different IP than they last logged in from.
 
  [SAML Relying Party](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20SAML%20RP) - An example set of policies to integrate with a SAML RP.
+
+ [Username based journey](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20Username) - For scenarios where you would like users to sign up and sign in with Usernames rather than Emails.
