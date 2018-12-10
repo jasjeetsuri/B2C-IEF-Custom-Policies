@@ -5,4 +5,4 @@
  2. The user has not done MFA in the last X seconds.
  3. The user is logging in from a different IP than they last logged in from.
 
- The time window can be adjusted in seconds by modifying the timeSpanInSeconds paramter in the CompareTimetoLastMFATime technical profile in the TrustFrameworkBase file. It has been set to 100 seconds in this example.
+ The time window can be adjusted in seconds by modifying the `timeSpanInSeconds` paramter in the `CompareTimetoLastMFATime` technical profile in the `TrustFrameworkBase` file. It has been set to 100 seconds in this example.
