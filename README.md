@@ -18,6 +18,10 @@ To use these examples in your own AAD B2C tenant, you will need to make the foll
 
 6. Update the `TenantId` parameter in all files to match your B2C Tenant, in the format `something.onmicrosoft.com`.
 
+7. Create an AAD B2C Application Registration. Choose to include a Web API and add https://jwt.ms as a reply url.
+
+8. Upload and Test your policies via the AAD B2C Blade at portal.azure.com as noted [here](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-get-started-custom#upload-the-policies).
+
 ## Examples
 * [MFA IP Timeout](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20MFA%20IP%20Timeout) - A policy which forces the user to do MFA on 3 conditions:
     1. The user has newly signed up.
@@ -27,3 +31,9 @@ To use these examples in your own AAD B2C tenant, you will need to make the foll
  * [SAML Relying Party](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20SAML%20RP) - An example set of policies to integrate with a SAML RP.
 
  * [Username based journey](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20Username) - For scenarios where you would like users to sign up and sign in with Usernames rather than Emails.
+
+ ## Troubleshooting
+ Find guidance [here](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-troubleshoot-custom) to help troubleshoot your policies.
+ 
+ ## Miscellaneous
+Use the VSCode Extension to help develop your policies [here](https://marketplace.visualstudio.com/items?itemName=AzureADB2CTools.aadb2c).
