@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="b2cprod.onmicrosoft.com" PolicyId="B2C_1A_SAML_SignUpOrSignIn" PublicPolicyUri="http://b2cprod.onmicrosoft.com/B2C_1A_SAML_SignUpOrSignIn">
+
+  <BasePolicy>
+    <TenantId>b2cprod.onmicrosoft.com</TenantId>
+    <PolicyId>B2C_1A_SAML_TrustFrameworkExtensions</PolicyId>
+  </BasePolicy>
+
+  <RelyingParty>
+    <DefaultUserJourney ReferenceId="SignUpOrSignInSAML"/>
+    <TechnicalProfile Id="PolicyProfile">
+      <DisplayName>PolicyProfile</DisplayName>
+      <!--B2C will understand that this is a SAML2 Application
+      Metadata is provided of the Relying party to validate the AuthN request
+      An output claim is issued as long as it is an output claim of the UserJourney steps and that a valid SAML2
+      defaultpartnerclaimtype is set for SAML2 on the Claims Provider section for that attribute-->
+      <Protocol Name="SAML2" />
+      <Metadata>
+        <Item Key="PartnerEntity">https://b2csamlrp.azurewebsites.net/Metadata</Item>
+        <Item Key="IdpInitiatedProfileEnabled">true</Item>
+        <Item Key="WantsSignedAssertions">false</Item>
+        <Item Key="client_id">customClientId</Item>
+        <Item Key="ResponsesSigned">true</Item>
+      </Metadata>
+      <OutputClaims>
+        <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress"/>
+        <OutputClaim ClaimTypeReferenceId="displayName"/>
+        <OutputClaim ClaimTypeReferenceId="givenName"/>
+        <OutputClaim ClaimTypeReferenceId="surname"/>
+        <OutputClaim ClaimTypeReferenceId="objectId" DefaultValue="NOSUBSET" />
+      </OutputClaims>
+      <SubjectNamingInfo ClaimType="objectId" Format="urn:oasis:names:tc:SAML:1.1:nameid-format:persistent"/>
+    </TechnicalProfile>
+
+  </RelyingParty>
+</TrustFrameworkPolicy>
+
+
+
