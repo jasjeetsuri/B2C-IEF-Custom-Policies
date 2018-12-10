@@ -1,4 +1,4 @@
-﻿$tenant  = "b2cprod.onmicrosoft.com"
+﻿$tenant  = "YourTenant.onmicrosoft.com"
 
 $oauth = $null
 $ClientID      = ""                # Should be a ~35 character string insert your info here
@@ -17,7 +17,7 @@ $oauth
 #Configure the extension property
 #Application objectID of the application being used to auth wit (objectID of Graph Service App)
 $AppObjectID = ""
-$url = "https://graph.windows.net/b2cprod.onmicrosoft.com/applications/$AppObjectID/extensionProperties?api-version=1.6"
+$url = "https://graph.windows.net/YourTenant.onmicrosoft.com/applications/$AppObjectID/extensionProperties?api-version=1.6"
 $body = @"
 { 
  “name”: "isMigrated", 
@@ -56,7 +56,7 @@ $body = @"
 "@
 
 $authHeader = @{"Authorization"= $oauth.access_token;"Content-Type"="application/json";"ContentLength"=$body.length }
-$url = "https://graph.windows.net/b2cprod.onmicrosoft.com/users?api-version=1.6"
+$url = "https://graph.windows.net/YourTenant.onmicrosoft.com/users?api-version=1.6"
 Invoke-WebRequest -Headers $authHeader -Uri $url -Method Post -Body $body
 
 #update user
