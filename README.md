@@ -23,6 +23,8 @@ To use these examples in your own AAD B2C tenant, you will need to make the foll
 8. Upload and Test your policies via the AAD B2C Blade at portal.azure.com as noted [here](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-get-started-custom#upload-the-policies).
 
 ## Examples
+* [Account Link](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/SocialAndLocalAccounts%20-%20Account%20Link) - A policy which will associate a user who logged in via a federated provider to a pre-created Local Account.
+
 * [MFA IP Timeout](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20MFA%20IP%20Timeout) - A policy which forces the user to do MFA on 3 conditions:
     1. The user has newly signed up.
     2. The user has not done MFA in the last X seconds.
