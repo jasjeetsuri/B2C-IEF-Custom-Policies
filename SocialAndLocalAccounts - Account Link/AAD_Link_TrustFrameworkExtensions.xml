@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="b2cprod.onmicrosoft.com" PolicyId="B2C_1A_AAD_Link_TrustFrameworkExtensions" PublicPolicyUri="http://b2cprod.onmicrosoft.com/B2C_1A_AAD_Link_TrustFrameworkExtensions">
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="yourtenant.onmicrosoft.com" PolicyId="B2C_1A_AAD_Link_TrustFrameworkExtensions" PublicPolicyUri="http://yourtenant.onmicrosoft.com/B2C_1A_AAD_Link_TrustFrameworkExtensions">
   <BasePolicy>
-    <TenantId>b2cprod.onmicrosoft.com</TenantId>
+    <TenantId>yourtenant.onmicrosoft.com</TenantId>
     <PolicyId>B2C_1A_AAD_Link_TrustFrameworkBase</PolicyId>
   </BasePolicy>
   <BuildingBlocks>
     <ClaimsSchema>
       <ClaimType Id="AADId">
-        <DisplayName>Alternate Email Addresses</DisplayName>
+        <DisplayName>Temp holder for the UPN from AAD</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>Email addresses that can be used to contact the user.</UserHelpText>
+        <UserHelpText>Temp holder for the UPN from AAD.</UserHelpText>
       </ClaimType>
       <ClaimType Id="upn">
         <DisplayName>AAD UPN</DisplayName>
@@ -20,11 +20,6 @@
       <ClaimType Id="extension_requiresMigration">
         <DisplayName>AAD user who has not yet logged in</DisplayName>
         <DataType>string</DataType>
-      </ClaimType>
-      <ClaimType Id="resource">
-        <DisplayName>Alternate Email Addresses</DisplayName>
-        <DataType>stringCollection</DataType>
-        <UserHelpText>Email addresses that can be used to contact the user.</UserHelpText>
       </ClaimType>
     </ClaimsSchema>
   </BuildingBlocks>
