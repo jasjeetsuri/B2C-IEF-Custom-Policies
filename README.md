@@ -38,6 +38,8 @@ To use these examples in your own AAD B2C tenant, you will need to make the foll
 
 * [Return the access token from a Social IdP](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/SocialAccounts%20-%20Facebook%20Access%20Token) - For scenarios where you would like users to return the access token from a Social IdP.
 
+* [Preventing logon for Social or External IdP Accounts when Disabled in AAD B2C](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/SocialAndLocalAccounts%20-%20Disable%20Social%20Account%20from%20Logon) - For scenarios where you would like users to return the access token from a Social IdP.
+
  ## Troubleshooting
  Find guidance [here](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-troubleshoot-custom) to help troubleshoot your policies.
  
