@@ -40,7 +40,7 @@ makecert](http://www.virtues.it/2015/08/howto-create-selfsigned-certificates-wit
 
 1. Run this command to generate a self signed certificate:
 
-        makecert -r -pe -n     "CN=yourappname.yourtenant.onmicrosoft.com" -a sha256 -sky signature -len 2048 -e 12/21/2018 -sr CurrentUser -ss My YourAppNameSamlCert.cer
+       makecert -r -pe -n "CN=yourappname.yourtenant.onmicrosoft.com" -a sha256 -sky signature -len 2048 -e 12/21/2018 -sr CurrentUser -ss My YourAppNameSamlCert.cer
 
 2. Go to the certificate store > Manage User Certificates &gt; Current
     User &gt; Personal &gt; Certificates &gt;
@@ -56,7 +56,7 @@ makecert](http://www.virtues.it/2015/08/howto-create-selfsigned-certificates-wit
 
 ### 2.2 Upload the certificate
 
-Whether you have a valid certificate issued by certificate authority, or aself-signed certificate, you need to upload the certificate to the Azure AD B2C Policy Keys area. To do so:
+Whether you have a valid certificate issued by certificate authority, or a self-signed certificate, you need to upload the certificate to the Azure AD B2C Policy Keys area. To do so:
 
 1. Go to your Azure AD B2C tenant. Click **Settings > Identity Experience Framework > Policy Keys**.
 
