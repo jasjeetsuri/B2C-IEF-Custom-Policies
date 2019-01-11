@@ -34,7 +34,7 @@ To use these examples in your own AAD B2C tenant, you will need to make the foll
 
  * [Username based journey](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20Username) - For scenarios where you would like users to sign up and sign in with Usernames rather than Emails.
 
- * [Email Verification at Sign In](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20Sign%20In%20Email%20Verificatione) - For scenarios where you would like users to validate their email via TOTP on every sign in.
+ * [Email Verification at Sign In](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20Sign%20In%20Email%20Verification) - For scenarios where you would like users to validate their email via TOTP on every sign in.
 
  ## Troubleshooting
  Find guidance [here](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-troubleshoot-custom) to help troubleshoot your policies.
