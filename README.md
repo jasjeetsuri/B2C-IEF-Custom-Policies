@@ -36,6 +36,8 @@ To use these examples in your own AAD B2C tenant, you will need to make the foll
 
  * [Email Verification at Sign In](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20Sign%20In%20Email%20Verification) - For scenarios where you would like users to validate their email via TOTP on every sign in.
 
+* [Return the access token from a Social IdP](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/SocialAccounts%20-%20Facebook%20Access%20Token) - For scenarios where you would like users to return the access token from a Social IdP.
+
  ## Troubleshooting
  Find guidance [here](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-troubleshoot-custom) to help troubleshoot your policies.
  
