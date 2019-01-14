@@ -121,7 +121,7 @@
             <OutputClaimsTransformation ReferenceId="AssertAccountEnabledIsTrue" />
           </OutputClaimsTransformations>
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
-        </TechnicalProfile>        #
+        </TechnicalProfile>       
 
         <!-- Read the extension_AccountEnabled attribute for Social Accounts on each logon-->
         <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">
@@ -265,7 +265,7 @@
             <ClaimsExchange Id="Self-AssertDisabledUserPage" TechnicalProfileReferenceId="AAD-DisabledUserPage" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        
+
         <OrchestrationStep Order="8" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
       </OrchestrationSteps>
       <ClientDefinition ReferenceId="DefaultWeb" />
