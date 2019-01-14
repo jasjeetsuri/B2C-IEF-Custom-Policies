@@ -6,7 +6,19 @@
     <TenantId>b2cprod.onmicrosoft.com</TenantId>
     <PolicyId>B2C_1A_DisableSocialAcct_TrustFrameworkBase</PolicyId>
   </BasePolicy>
-  <BuildingBlocks></BuildingBlocks>
+  <BuildingBlocks>
+    <ClaimsTransformations>
+  			<ClaimsTransformation Id="AssertAccountEnabledIsTrue" TransformationMethod="AssertBooleanClaimIsEqualToValue">
+				<InputClaims>
+					<InputClaim ClaimTypeReferenceId="extension_accountEnabled" TransformationClaimType="inputClaim" />
+				</InputClaims>
+				<InputParameters>
+					<InputParameter Id="valueToCompareTo" DataType="boolean" Value="true" />
+				</InputParameters>
+			</ClaimsTransformation>
+    </ClaimsTransformations>
+  </BuildingBlocks>
+
   <ClaimsProviders>
     <ClaimsProvider>
       <DisplayName>Local Account SignIn</DisplayName>
@@ -40,13 +52,13 @@
             <Item Key="client_id">a963bb4d-6216-4904-b07d-251bfbfe19c8</Item>
             <Item Key="IdTokenAudience">a963bb4d-6216-4904-b07d-251bfbfe19c8</Item>
             <Item Key="UsePolicyInRedirectUri">false</Item>
-            <Item Key="response_types">id_token code</Item>
+            <Item Key="response_types">id_token</Item>
             <Item Key="scope">openid</Item>
             <Item Key="response_mode">form_post</Item>
             <Item Key="HttpBinding">POST</Item>
           </Metadata>
           <CryptographicKeys>
-            <Key Id="client_secret" StorageReferenceId="B2C_1A_DisableSocialAcctSecretFederation"/>
+            <Key Id="client_secret" StorageReferenceId="B2C_1A_aadSecretFederation"/>
           </CryptographicKeys>
           <InputClaims>           
           </InputClaims>
@@ -58,7 +70,7 @@
             <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="socialIdpAuthentication" AlwaysUseDefaultValue="true" />
             <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="AzureADContoso" AlwaysUseDefaultValue="true" />
-            <OutputClaim ClaimTypeReferenceId="email"/>
+            <OutputClaim ClaimTypeReferenceId="email"/> <!-- Returned using AAD Optional Claims-->
           </OutputClaims>
           <OutputClaimsTransformations>
             <OutputClaimsTransformation ReferenceId="CreateRandomUPNUserName"/>
@@ -68,6 +80,7 @@
           </OutputClaimsTransformations>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-SocialLogin"/>
         </TechnicalProfile>
+
         <TechnicalProfile Id="AAD-DisabledUserPage">
           <DisplayName>Page for disabled AAD User</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
@@ -79,16 +92,66 @@
             <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
           </CryptographicKeys>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="accountEnabled" />
+            <InputClaim ClaimTypeReferenceId="extension_accountEnabled" />
           </InputClaims>
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="accountEnabled" />
+            <OutputClaim ClaimTypeReferenceId="extension_accountEnabled" />
             <OutputClaim ClaimTypeReferenceId="dummy" />
           </OutputClaims>
           <ValidationTechnicalProfiles>
             <ValidationTechnicalProfile ReferenceId="AAD-AssertAccountEnabled" />
           </ValidationTechnicalProfiles>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
+
+        </TechnicalProfile>
+  				<TechnicalProfile Id="AAD-AssertAccountEnabled">  
+					<Metadata>
+						<Item Key="Operation">Read</Item>
+						<Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
+						<Item Key="UserMessageIfClaimsPrincipalDoesNotExist">User does not exist. Please sign up before you can sign in.</Item>
+						<Item Key="UserMessageIfClaimsTransformationBooleanValueIsNotEqual">Your account has been locked. Contact your support person to unlock it, then try again.</Item>
+					</Metadata>
+					<InputClaims>
+						<InputClaim ClaimTypeReferenceId="AlternativeSecurityId" PartnerClaimType="alternativeSecurityId" Required="true" />
+					</InputClaims>
+					<OutputClaims>
+						<OutputClaim ClaimTypeReferenceId="extension_accountEnabled"/>
+					</OutputClaims>
+					<OutputClaimsTransformations>
+						<OutputClaimsTransformation ReferenceId="AssertAccountEnabledIsTrue" />
+					</OutputClaimsTransformations>
+					<IncludeTechnicalProfile ReferenceId="AAD-Common" />
+				</TechnicalProfile>
+
+        <!-- Read the extension_AccountEnabled attribute for Social Accounts on each logon-->
+				<TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">
+					<OutputClaims>
+						<OutputClaim ClaimTypeReferenceId="extension_accountEnabled" />
+					</OutputClaims>
+					<IncludeTechnicalProfile ReferenceId="AAD-Common" />
+				</TechnicalProfile>
+				<TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId-NoError">
+					<Metadata>
+						<Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">false</Item>
+					</Metadata>
+					<OutputClaims>
+						<OutputClaim ClaimTypeReferenceId="extension_accountEnabled"/>
+					</OutputClaims>
+					<IncludeTechnicalProfile ReferenceId="AAD-UserReadUsingAlternativeSecurityId" />
+				</TechnicalProfile>
+
+        <!-- Modify to write the signInName property for the Social Account and extension_AccountEnabled
+          AccountEnabled is usually false for Social IdP accounts since a password is not set in B2C-->
+        <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
+          <PersistedClaims>
+            <PersistedClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress" />
+            <PersistedClaim ClaimTypeReferenceId="extension_accountEnabled" AlwaysUseDefaultValue="true" DefaultValue="true" />
+          </PersistedClaims>
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="extension_accountEnabled" AlwaysUseDefaultValue="true" DefaultValue="true" />
+          </OutputClaims>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-AAD" />
         </TechnicalProfile>
         </TechnicalProfiles>
     </ClaimsProvider>
@@ -130,22 +193,11 @@
             <ClaimsExchange Id="AADUserReadUsingAlternativeSecurityId" TechnicalProfileReferenceId="AAD-UserReadUsingAlternativeSecurityId-NoError" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <OrchestrationStep Order="4" Type="ClaimsExchange">
-          <Preconditions>
-            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
-              <Value>accountEnabled</Value>
-              <Value>True</Value>
-              <Action>SkipThisOrchestrationStep</Action>
-            </Precondition>
-          </Preconditions>
-          <ClaimsExchanges>
-            <ClaimsExchange Id="self-assertdisableduser" TechnicalProfileReferenceId="AAD-DisabledUserPage" />
-          </ClaimsExchanges>
-        </OrchestrationStep>        
+       
         <!--Show self-asserted page only if the directory does not have the user account already (i.e. we do not have an objectId). 
           This can only happen when authentication happened using a social IDP. If local account was created or authentication done
           using ESTS in step 2, then an user account must exist in the directory by this time. -->
-        <OrchestrationStep Order="5" Type="ClaimsExchange">
+        <OrchestrationStep Order="4" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
               <Value>objectId</Value>
@@ -157,7 +209,7 @@
           </ClaimsExchanges>
         </OrchestrationStep>        <!-- This step reads any user attributes that we may not have received when authenticating using ESTS so they can be sent 
           in the token. -->
-        <OrchestrationStep Order="6" Type="ClaimsExchange">
+        <OrchestrationStep Order="5" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
               <Value>authenticationSource</Value>
@@ -172,7 +224,7 @@
         <!-- The previous step (SelfAsserted-Social) could have been skipped if there were no attributes to collect 
              from the user. So, in that case, create the user in the directory if one does not already exist 
              (verified using objectId which would be set from the last step if account was created in the directory. -->
-        <OrchestrationStep Order="7" Type="ClaimsExchange">
+        <OrchestrationStep Order="6" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
               <Value>objectId</Value>
@@ -183,6 +235,32 @@
             <ClaimsExchange Id="AADUserWrite" TechnicalProfileReferenceId="AAD-UserWriteUsingAlternativeSecurityId" />
           </ClaimsExchanges>
         </OrchestrationStep>
+
+        <!-- Only run this step for non local accounts, and also when AccountEnabled = False, and not a new User.
+        This step runs after writing of  social account to make sure we already have extension_AccountEnabled
+        in the claims pipeline-->
+        <OrchestrationStep Order="7" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>extension_accountEnabled</Value>
+              <Value>True</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+              <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>authenticationSource</Value>
+              <Value>localAccountAuthentication</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+              <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>newUser</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="self-assertdisableduser" TechnicalProfileReferenceId="AAD-DisabledUserPage" />
+          </ClaimsExchanges>
+        </OrchestrationStep> 
+
         <OrchestrationStep Order="8" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
       </OrchestrationSteps>
       <ClientDefinition ReferenceId="DefaultWeb" />

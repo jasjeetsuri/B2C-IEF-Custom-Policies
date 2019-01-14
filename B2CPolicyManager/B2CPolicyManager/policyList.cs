@@ -19,5 +19,6 @@ namespace B2CPolicyManager
     {
         [JsonProperty("id")]
         public string Id { get; set; }
+
     }
 }

@@ -148,6 +148,11 @@ namespace B2CPolicyManager
         private void UpdatePolicyList(PolicyList myPolicies)
         {
             policyList.Items.Clear();
+
+            //myPolicies.Value.o;
+            //var peopleInOrder = myPolicies.Value.OrderBy(Value => Value);
+            //var sorted = myPolicies.Value.OrderBy(id => id).ToArray();
+
             foreach (Value policyValue in myPolicies.Value)
             {
                 policyList.Items.Add(policyValue.Id);

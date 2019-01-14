@@ -62,7 +62,7 @@ namespace B2CPolicyManager
             try
             {
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", TokenForUser);
-                requestMessage.Headers.Add("SampleID", "console-csharp-trustframeworkpolicy");
+                requestMessage.Headers.Add("SampleID", "Custom-csharp-trustframeworkpolicy-private");
             }
             catch (Exception ex)
             {

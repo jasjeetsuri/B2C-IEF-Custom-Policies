@@ -25,7 +25,7 @@
         <OutputClaim ClaimTypeReferenceId="email" />
         <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub"/>
         <OutputClaim ClaimTypeReferenceId="identityProvider" />
-         <OutputClaim ClaimTypeReferenceId="accountEnabled" />
+        <OutputClaim ClaimTypeReferenceId="extension_accountEnabled" />
       </OutputClaims>
       <SubjectNamingInfo ClaimType="sub" />
     </TechnicalProfile>

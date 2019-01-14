@@ -32,6 +32,13 @@
 				<UserInputType>TextBox</UserInputType>
 			</ClaimType>
 
+			<ClaimType Id="extension_accountEnabled">
+				<DisplayName>Account Enabled</DisplayName>
+				<DataType>boolean</DataType>
+				<AdminHelpText>Specifies whether the user's account is enabled.</AdminHelpText>
+				<UserHelpText>Specifies whether your account is enabled.</UserHelpText>
+			</ClaimType>
+
 			<ClaimType Id="accountEnabled">
 				<DisplayName>Account Enabled</DisplayName>
 				<DataType>boolean</DataType>
@@ -369,14 +376,7 @@
 				</OutputClaims>
 			</ClaimsTransformation>
 
-			<ClaimsTransformation Id="AssertAccountEnabledIsTrue" TransformationMethod="AssertBooleanClaimIsEqualToValue">
-				<InputClaims>
-					<InputClaim ClaimTypeReferenceId="accountEnabled" TransformationClaimType="inputClaim" />
-				</InputClaims>
-				<InputParameters>
-					<InputParameter Id="valueToCompareTo" DataType="boolean" Value="true" />
-				</InputParameters>
-			</ClaimsTransformation>
+
 		</ClaimsTransformations>
 
 		<ClientDefinitions>
@@ -530,7 +530,10 @@
 				<TechnicalProfile Id="AAD-Common">
 					<DisplayName>Azure Active Directory</DisplayName>
 					<Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-
+      <Metadata>
+        <Item Key="ApplicationObjectId">d79fe583-1422-4b59-94f7-22b85d54ebc1</Item>
+        <Item Key="ClientId">74467a80-b261-48fc-baa4-2f7b7f335d4c</Item>
+      </Metadata>
 					<CryptographicKeys>
 						<Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
 					</CryptographicKeys>
@@ -599,27 +602,7 @@
 						<OutputClaim ClaimTypeReferenceId="otherMails" />
 						<OutputClaim ClaimTypeReferenceId="givenName" />
 						<OutputClaim ClaimTypeReferenceId="surname" />
-						<OutputClaim ClaimTypeReferenceId="accountEnabled" Required="true"/>
 					</OutputClaims>
-					<IncludeTechnicalProfile ReferenceId="AAD-Common" />
-				</TechnicalProfile>
-
-				<TechnicalProfile Id="AAD-AssertAccountEnabled">  
-					<Metadata>
-						<Item Key="Operation">Read</Item>
-						<Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
-						<Item Key="UserMessageIfClaimsPrincipalDoesNotExist">User does not exist. Please sign up before you can sign in.</Item>
-						<Item Key="UserMessageIfClaimsTransformationBooleanValueIsNotEqual">Your account has been locked. Contact your support person to unlock it, then try again.</Item>
-					</Metadata>
-					<InputClaims>
-						<InputClaim ClaimTypeReferenceId="AlternativeSecurityId" PartnerClaimType="alternativeSecurityId" Required="true" />
-					</InputClaims>
-					<OutputClaims>
-						<OutputClaim ClaimTypeReferenceId="accountEnabled"/>
-					</OutputClaims>
-					<OutputClaimsTransformations>
-						<OutputClaimsTransformation ReferenceId="AssertAccountEnabledIsTrue" />
-					</OutputClaimsTransformations>
 					<IncludeTechnicalProfile ReferenceId="AAD-Common" />
 				</TechnicalProfile>
 
@@ -627,9 +610,6 @@
 					<Metadata>
 						<Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">false</Item>
 					</Metadata>
-					<OutputClaims>
-						<OutputClaim ClaimTypeReferenceId="accountEnabled"/>
-					</OutputClaims>
 					<IncludeTechnicalProfile ReferenceId="AAD-UserReadUsingAlternativeSecurityId" />
 				</TechnicalProfile>
 
