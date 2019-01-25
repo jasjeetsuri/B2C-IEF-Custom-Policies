@@ -8,9 +8,9 @@ This set of policies demonstrates how to integrate Google Captcha into the Sign 
 
 * JavaScript is used to embed the Captcha control.
 The Captcha response is inserted into a hidden field which the `SelfAsserted-LocalAccountSignin-Email` technical profile exposes to the sign in page.
-* The `SelfAsserted-LocalAccountSignin-Email` technical profile sends the Captcha response from the hidden field to the Captcha API which validates the blob against the Google servers.
-* If the response from the Google server is successful, B2C continues to validate the credentials against the directory. 
-* Otherwise, the API responds back to the client indicating the Captcha was invalid and must try again.
+* The `SelfAsserted-LocalAccountSignin-Email` technical profile retrieves the Captcha response from the hidden field and validates the blob against the Google servers using the `login-Recaptcha` validation technical profile. This technical profile is a REST API call to the Captcha API.
+* If the response from the Google server is successful, B2C continues to validate the credentials against the directory using `login-noninteractive`. 
+* Otherwise, the API responds back to AAD B2C indicating the Captcha was invalid and must try again. The error can be changed in the API source.
 * Each time the user submits the page, the Captcha is reset using JavaScript.
 
 Test a live version of this policy [here](https://b2cprod.b2clogin.com/b2cprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_Captcha_signuporsignin&client_id=51d907f8-db14-4460-a1fd-27eaeb2a74da&nonce=defaultNonce&redirect_uri=https://jwt.ms&scope=openid&response_type=id_token&prompt=login).
