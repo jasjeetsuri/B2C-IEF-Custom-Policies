@@ -40,7 +40,9 @@ To use these examples in your own AAD B2C tenant, you will need to make the foll
 
 * [Preventing logon for Social or External IdP Accounts when Disabled in AAD B2C](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/SocialAndLocalAccounts%20-%20Disable%20Social%20Account%20from%20Logon) - For scenarios where you would like to prevent logons via Social or External IdPs when the account has been disabled in Azure AD B2C.
 
- * [Login with Phone Number](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/SocialAndLocalAccounts%20-%20Login%20with%20Phone%20Number) - An example set of policies to for passwordless login via Phone Number (SMS or Phone Call).
+* [Login with Phone Number](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/SocialAndLocalAccounts%20-%20Login%20with%20Phone%20Number) - An example set of policies to for passwordless login via Phone Number (SMS or Phone Call).
+
+* [Google Captcha on Sign In](https://github.com/jasjeetsuri/B2C-IEF-Custom-Policies/tree/master/LocalAccounts%20-%20Captcha%20Integration) - An example set of policies which integrate Google Captcha into the sign in journey.
 
  ## Troubleshooting
  Find guidance [here](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-troubleshoot-custom) to help troubleshoot your policies.
