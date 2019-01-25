@@ -12,3 +12,5 @@ The Captcha response is inserted into a hidden field which the `SelfAsserted-Loc
 * If the response from the Google server is successful, B2C continues to validate the credentials against the directory. 
 * Otherwise, the API responds back to the client indicating the Captcha was invalid and must try again.
 * Each time the user submits the page, the Captcha is reset using JavaScript.
+
+Test a live version of this policy [here](https://b2cprod.b2clogin.com/b2cprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_Captcha_signuporsignin&client_id=51d907f8-db14-4460-a1fd-27eaeb2a74da&nonce=defaultNonce&redirect_uri=https://jwt.ms&scope=openid&response_type=id_token&prompt=login).
