@@ -13,4 +13,4 @@ The Captcha response is inserted into a hidden field which the `SelfAsserted-Loc
 * Otherwise, the API responds back to AAD B2C indicating the Captcha was invalid and must try again. The error can be changed in the API source.
 * Each time the user submits the page, the Captcha is reset using JavaScript.
 
-Test a live version of this policy [here](https://b2cprod.b2clogin.com/b2cprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_Captcha_signuporsignin&client_id=51d907f8-db14-4460-a1fd-27eaeb2a74da&nonce=defaultNonce&redirect_uri=https://jwt.ms&scope=openid&response_type=id_token&prompt=login).
+Test a live version of this policy [here](https://b2cprod.b2clogin.com/b2cprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_Captcha_signin&client_id=51d907f8-db14-4460-a1fd-27eaeb2a74da&nonce=defaultNonce&redirect_uri=https://jwt.ms&scope=openid&response_type=id_token&prompt=login).

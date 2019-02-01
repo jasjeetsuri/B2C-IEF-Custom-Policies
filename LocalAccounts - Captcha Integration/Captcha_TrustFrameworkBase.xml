@@ -422,7 +422,7 @@
 
 
       <ContentDefinition Id="api.selfasserted">
-        <LoadUri>https://b2ccaptcha.blob.core.windows.net/b2ccustompage/customCaptcha1.html</LoadUri>
+        <LoadUri>https://b2ccaptcha.blob.core.windows.net/b2ccustompage/customCaptcha2.html</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:1.1.0</DataUri>
         <Metadata>
