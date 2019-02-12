@@ -13,7 +13,7 @@ $body = @{grant_type="client_credentials";client_id=$ClientID;client_secret=$Cli
 $oauth = Invoke-RestMethod -Method Post -Uri $loginURL/$tenant/oauth2/token?api-version=1.0 -Body $body
 
 #Part 2 - Register the extension attribute named "requiresMigration" into Azure AD B2C
-#ObjectID of the b2c-extensions-app App Registration
+#ObjectID of the B2CUserMigration App Registration
 $AppObjectID = ""
 
 #Set the endpoint to register extension attributes
@@ -37,6 +37,7 @@ $result = Invoke-WebRequest -Headers $authHeader -Uri $url -Method Post -Body $b
 
 #Part 3 - Create a user object in Azure AD B2C
 #Populate the user properties
+#Insert the Application Id of the B2CUserMigration App Registration used in Part 2 to register the extension property in the extension name without the dashes in the GUID
 $body = @"
 {
   "accountEnabled": true,
@@ -52,7 +53,7 @@ $body = @"
       "value": "j.smith@contoso.com"
     }
   ],
-  "extension_<Part 2 APPID>_requiresMigration": true
+  "extension_<B2CUserMigration App Id without dashes>_requiresMigration": true
 }
 "@
 
