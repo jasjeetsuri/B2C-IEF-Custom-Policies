@@ -4,8 +4,6 @@
 The sample policy is developed and managed by the open-source community in GitHub. This policy is not part of Azure AD B2C product and it's not supported under any Microsoft standard support program or service. The policy is provided AS IS without warranty of any kind.
 
 # Azure Active Directory B2C: Seamless user  migration from a Legacy Identity Provider
-[!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
-
 When you plan to migrate your users identities to Azure AD B2C, you may also want to migrate the user accounts as well. This article explains how to migrate existing user accounts from a legacy Identity Provider into Azure AD B2C and seamlessly validating and migrating user passwords at initial logon to a Azure AD B2C protected application. This scenario is applicable when passwords in the legacy Identity Provider are stored in a hashed or non-recoverable state.
 
 ## Pre migrating user accounts
