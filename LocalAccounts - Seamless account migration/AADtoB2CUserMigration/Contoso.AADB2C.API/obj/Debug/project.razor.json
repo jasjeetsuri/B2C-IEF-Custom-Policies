@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\B2C GitHub\\LocalAccounts - Seamless account migration\\AADtoB2CUserMigration\\Contoso.AADB2C.API\\Contoso.AADB2C.API.csproj",
+  "TargetFramework": "v4.5.2",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}
