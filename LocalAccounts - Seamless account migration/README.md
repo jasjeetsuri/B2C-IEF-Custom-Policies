@@ -448,13 +448,13 @@ When the orchestration step executes `LocalAccountWritePasswordUsingObjectId` as
 If the `extension_requiresMigration` value is not `false` (default), then `AAD-FlipMigratedFlag` Technical Profile will execute. This will change extension_requiresMigration to `false`. Finally the password is written as normal via the `AAD-UserWritePasswordUsingObjectId` Technical Profile.
 
 ## Upload the policy to your tenant
-1.  In the [Azure portal](https://portal.azure.com), switch into the [context of your Azure AD B2C tenant](active-directory-b2c-navigate-to-b2c-context), and click on  **Azure AD B2C**.
+1.  In the [Azure portal](https://portal.azure.com), switch into the context of your Azure AD B2C tenant, and click on the  **Azure AD B2C** blade.
 2.  Select **Identity Experience Framework**.
 3.  Click on **All Policies**.
 4.  Select **Upload Policy**
 5.  Check **Overwrite the policy if it exists** box.
-6.  **Upload** TrustFrameworkExtensions.xml and ensure that it does not fail the validation
-7.  Repeat last step and upload the SignUpOrSignIn.xml
+6.  **Upload** SeamlessMigration_TrustFrameworkBase.xml and ensure that it does not fail the validation
+7.  Repeat last step to upload the SeamlessMigration_TrustFrameworkExtensions.xml, SeamlessMigration_SignUpOrSignin.xml and SeamlessMigration_PasswordReset.xml policy files.
 
 ### Test the custom policy by using Run Now
 1.  Open **Azure AD B2C Settings** and go to **Identity Experience Framework**.
