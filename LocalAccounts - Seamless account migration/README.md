@@ -357,7 +357,7 @@ The following diagram illustrates the seamless migration flow during password re
 ### Preparing the Password Reset journey
 The password reset journey must be modified such that when a user resets a password on an account that is due migration, then the extension attribute is unmarked such that subsequent logons do not go via the legacy Identity Provider validation.
 
-### Create a Technical Profile to read the `extension_requiresMigration` using `objectId`.
+### Create a Technical Profile to read the migration status
 
 1. Open the extension policy file (TrustFrameworkExtensions.xml) from your working directory. 
 2. Find the `<ClaimsProviders>` section
@@ -385,6 +385,7 @@ The password reset journey must be modified such that when a user resets a passw
   </TechnicalProfiles>
 </ClaimsProvider>
 ```
+The above Technical Profile will read the `extension_requiresMigration` extension attribute to determine whether the account is due migration.
 
 ### Create a Technical Profile to change the migration flag on an account to False.
 
