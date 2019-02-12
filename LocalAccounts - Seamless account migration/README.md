@@ -387,7 +387,7 @@ The password reset journey must be modified such that when a user resets a passw
 ```
 The above Technical Profile will read the `extension_requiresMigration` extension attribute to determine whether the account is due migration.
 
-### Create a Technical Profile to change the migration flag on an account to False.
+### Create a Technical Profile to change the migration flag on an account to False
 
 1. Open the extension policy file (TrustFrameworkExtensions.xml) from your working directory. 
 2. Find the `<ClaimsProviders>` section
