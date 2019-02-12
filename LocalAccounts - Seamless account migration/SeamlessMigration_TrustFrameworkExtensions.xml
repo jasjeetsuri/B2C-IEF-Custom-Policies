@@ -123,6 +123,10 @@
 			<InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="email" />
 			<InputClaim ClaimTypeReferenceId="password" />
 		</InputClaims>
+		<OutputClaims>
+			<OutputClaim ClaimTypeReferenceId="tokenSuccess" DefaultValue="false"/>
+			<OutputClaim ClaimTypeReferenceId="migrationRequired"/>
+		</OutputClaims>
 		<UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
 		</TechnicalProfile>
 	</TechnicalProfiles>
