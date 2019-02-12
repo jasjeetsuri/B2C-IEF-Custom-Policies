@@ -247,7 +247,7 @@ The Technical Profile above defines two input claims: `signInName` (sent as emai
 }
 ```
 
-### Add a Technical Profile which allows writing the password changing the migration status
+### Add a Technical Profile which allows writing the password and changing the migration status
 Once the REST API has confirmed the username and password successfully authenticated at the legacy Identity Provider, we must write the new password into the account and also change the extension attribute such that it no longer follows this migration path on subsequent logons.
 
 1. Open the extension policy file (TrustFrameworkExtensions.xml) from your working directory. 
@@ -357,9 +357,9 @@ The following diagram illustrates the seamless migration flow during password re
 ## Preparing the Password Reset journey
 The password reset journey must be modified such that when a user resets a password on an account that is due migration, then the extension attribute is unmarked such that subsequent logons do not go via the legacy Identity Provider validation.
 
-Create a Technical Profile to read the `extension_requiresMigration` using `objectId`.
+### Create a Technical Profile to read the `extension_requiresMigration` using `objectId`.
 
-1.  Open the extension policy file (TrustFrameworkExtensions.xml) from your working directory. 
+1. Open the extension policy file (TrustFrameworkExtensions.xml) from your working directory. 
 2. Find the `<ClaimsProviders>` section
 3. Add following XML snippet under the `ClaimsProviders` element
 
@@ -386,9 +386,9 @@ Create a Technical Profile to read the `extension_requiresMigration` using `obje
 </ClaimsProvider>
 ```
 
-Create a Technical Profile to change the migration flag on an account to False.
+### Create a Technical Profile to change the migration flag on an account to False.
 
-1.  Open the extension policy file (TrustFrameworkExtensions.xml) from your working directory. 
+1. Open the extension policy file (TrustFrameworkExtensions.xml) from your working directory. 
 2. Find the `<ClaimsProviders>` section
 3. Add following XML snippet under the `ClaimsProviders` element
 ```XML
@@ -447,7 +447,7 @@ Override the `LocalAccountWritePasswordUsingObjectId` Technical Profile as follo
 When the orchestration step executes `LocalAccountWritePasswordUsingObjectId` as part of the password reset user journey, it will first obtain the `extension_requiresMigration` value from the user object.
 If the `extension_requiresMigration` value is not `false` (default), then `AAD-FlipMigratedFlag` Technical Profile will execute. This will change extension_requiresMigration to `false`. Finally the password is written as normal via the `AAD-UserWritePasswordUsingObjectId` Technical Profile.
 
-### Upload the policy to your tenant
+## Upload the policy to your tenant
 1.  In the [Azure portal](https://portal.azure.com), switch into the [context of your Azure AD B2C tenant](active-directory-b2c-navigate-to-b2c-context), and click on  **Azure AD B2C**.
 2.  Select **Identity Experience Framework**.
 3.  Click on **All Policies**.
@@ -463,6 +463,6 @@ If the `extension_requiresMigration` value is not `false` (default), then `AAD-F
 
 ## Troubleshooting
 Find guidance [here](https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-troubleshoot-custom) to help troubleshoot your policies.
- 
+
 ## Miscellaneous
 Use the VSCode Extension to help develop your policies [here](https://marketplace.visualstudio.com/items?itemName=AzureADB2CTools.aadb2c).
