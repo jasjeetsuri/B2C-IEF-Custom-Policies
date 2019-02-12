@@ -27,7 +27,7 @@ Once the application has been migrated to use Azure AD B2C as the Identity Provi
 >
 
 The following diagram illustrates the seamless migration flow:
-![Just in time migration flow Sign In](media/active-directory-b2c-user-migration-jit/signin.png)
+![Just in time migration flow Sign In](Media/active-directory-b2c-user-migration-jit/signin.PNG)
 
 ## Using Azure AD Graph API to migrate users
 This section describes the process on how to create user accounts in Azure AD B2C via Azure AD Graph API for the pre-migration stage.
@@ -42,7 +42,7 @@ In this step, you register your migration application in Azure AD. Create applic
 3. From left panel, open the **Azure Active Directory** (not the Azure AD B2C). You might need to select **More Services** to find it.
 4. Select **App registrations**.
 5. Select **New application registration**.
-![New application registration](media/active-directory-b2c-user-migration-jit/just-in-time-app-registration.png)
+![New application registration](Media/active-directory-b2c-user-migration-jit/just-in-time-app-registration.png)
 6. Follow the prompts and create a new application
     * For **Name**, use **B2CUserMigration**.
     * For **Application type**, use **Web app/API**.
@@ -53,7 +53,7 @@ Select **Properties**, copy the **Application ID**, and save it for later.
 
 ### Create an application secret
 8. Click on **Keys** and add a new key (also known as client secret). Also, copy the key for later.
-![Application ID and Keys](media/active-directory-b2c-user-migration-jit/just-in-time-app-id-and-key.png)
+![Application ID and Keys](Media/active-directory-b2c-user-migration-jit/just-in-time-app-id-and-key.png)
 
 ### Grant administrative permission to your application
 1. Continuing in the Azure portal's **Registered App**
@@ -61,7 +61,7 @@ Select **Properties**, copy the **Application ID**, and save it for later.
 3. Click on **Windows Azure Active Directory**.
 4. In the **Enable Access**, under **Application Permissions**, select the **Read and write directory data** permission and click **Save**.
 4. Finally, back in the **Required permissions**, click on the **Grant Permissions** button.
-![Application permissions](media/active-directory-b2c-user-migration-jit/just-in-time-app-registration-permissions.png)
+![Application permissions](Media/active-directory-b2c-user-migration-jit/just-in-time-app-registration-permissions.png)
 
 You now have an application that has permission to create, read, and update users from your B2C tenant.
 
@@ -350,7 +350,7 @@ Potentially a user may return to the site and forget their password after their 
 In such a case, we must always check the migration status of the account via the extension attribute. Once the user resets the password, unflag the account for migration via the extension attribute if it was due to be migrated at initial sign in.
 
 The following diagram illustrates the seamless migration flow during password reset:
-![Just in time migration flow password reset](media/active-directory-b2c-user-migration-jit/password-reset-journey.png)
+![Just in time migration flow password reset](Media/active-directory-b2c-user-migration-jit/password-reset-journey.PNG)
 
 ## Preparing the Password Reset journey
 The password reset journey must be modified such that when a user resets a password on an account that is due migration, then the extension attribute is unmarked such that subsequent logons do not go via the legacy Identity Provider validation.
