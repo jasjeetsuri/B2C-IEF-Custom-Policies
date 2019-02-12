@@ -113,6 +113,8 @@ $result = Invoke-WebRequest -Headers $authHeader -Uri $url -Method Post -Body $b
 ```PowerShell
 #Part 3 - Create a user object in Azure AD B2C
 #Populate the user properties
+#Insert the AppId used in Part 2 to register the extension property
+#in the extension name without the dashes in the GUID
 $body = @"
 {
   "accountEnabled": true,
@@ -128,7 +130,7 @@ $body = @"
       "value": "j.smith@contoso.com"
     }
   ],
-  "requiresMigration": true
+  "extension_<Part 2 AppId without dashes>_requiresMigration": true
 }
 "@
 
