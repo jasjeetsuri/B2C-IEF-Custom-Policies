@@ -345,7 +345,7 @@ For a failed authentication against the legacy Identity Provider, the REST API s
 
 The migrationRequired key-value pair is used to write the new value into the `extension_requiresMigration` attribute when the legacy Identity Provider authentication is successful as part of the `AAD-WritePasswordAndFlipMigratedFlag` Technical Profile. This will unmark the account for migration at subsequent logons since it will return 'false'.
 
-### Seamless migration flow during Password Reset
+## Seamless migration flow during Password Reset
 
 Potentially a user may return to the site and forget their password after their account was already pre migrated. We must handle accounts that are created only in Azure AD B2C, already migrated accounts and accounts that still need migrating.
 
@@ -354,7 +354,7 @@ In such a case, we must always check the migration status of the account via the
 The following diagram illustrates the seamless migration flow during password reset:
 ![Just in time migration flow password reset](Media/active-directory-b2c-user-migration-jit/password-reset-journey.PNG)
 
-## Preparing the Password Reset journey
+### Preparing the Password Reset journey
 The password reset journey must be modified such that when a user resets a password on an account that is due migration, then the extension attribute is unmarked such that subsequent logons do not go via the legacy Identity Provider validation.
 
 ### Create a Technical Profile to read the `extension_requiresMigration` using `objectId`.
