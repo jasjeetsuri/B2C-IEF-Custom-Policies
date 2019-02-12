@@ -144,7 +144,7 @@ $url = "https://graph.windows.net/$tenant/users?api-version=1.6"
 Invoke-WebRequest -Headers $authHeader -Uri $url -Method Post -Body $body
 ```
 
-### Configuring Azure AD B2C Custom Policy
+## Configuring Azure AD B2C Custom Policy
 The Azure AD B2C custom policy must be reconfigured such that upon sign-in, it can make the necessary validations against data to execute the logic described in the seamless migration flow during sign in.
 
 ### Enable your Custom Policy to read and write custom attributes
