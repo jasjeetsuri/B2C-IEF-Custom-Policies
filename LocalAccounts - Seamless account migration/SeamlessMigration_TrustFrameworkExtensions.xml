@@ -126,7 +126,7 @@
 		<OutputClaims>
 			<OutputClaim ClaimTypeReferenceId="tokenSuccess" DefaultValue="false"/>
 			<OutputClaim ClaimTypeReferenceId="migrationRequired"/>
-		</OutputClaims>
+		</OutputClaims> 
 		<UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
 		</TechnicalProfile>
 	</TechnicalProfiles>
