@@ -344,7 +344,7 @@ For a successful authentication against the legacy Identity Provider, this would
 }
 ```
 
-For a failed authentication against the legacy Identity Provider, the REST API should return a non HTTP 200 response code with a friendly error message.
+For a failed authentication against the legacy Identity Provider, the REST API should return a non HTTP 200 response code with a friendly error message. This is demonstrated in the `AADtoB2CUserMigration` sample folder.
 
 The migrationRequired key-value pair is used to write the new value into the `extension_requiresMigration` attribute when the legacy Identity Provider authentication is successful as part of the `AAD-WritePasswordAndFlipMigratedFlag` Technical Profile. This will unmark the account for migration at subsequent logons since it will return 'false'.
 
@@ -418,7 +418,7 @@ The above Technical Profile will read the `extension_requiresMigration` extensio
   </TechnicalProfiles>
 </ClaimsProvider>
 ```
-When `AAD-FlipMigratedFlag` is called, the objectId is used to locate the user account and then write the value of migrationRequired into extension_requiresMigration. Since migrationRequired was not populated into the claims-bag during this journey, it will use the `DefaultValue` of `False` in all occasions.
+When `AAD-FlipMigratedFlag` is called, the `objectId` is used to locate the user account and then write the value of `migrationRequired` into `extension_requiresMigration`. Since `migrationRequired` is not populated into the claims-bag during this journey, it will use the `DefaultValue` of `False` in all occasions.
 
 
 Override the `LocalAccountWritePasswordUsingObjectId` Technical Profile as follows:
@@ -449,7 +449,7 @@ Override the `LocalAccountWritePasswordUsingObjectId` Technical Profile as follo
 ```
 
 When the orchestration step executes `LocalAccountWritePasswordUsingObjectId` as part of the password reset user journey, it will first obtain the `extension_requiresMigration` value from the user object.
-If the `extension_requiresMigration` value is not `false` (default), then `AAD-FlipMigratedFlag` Technical Profile will execute. This will change extension_requiresMigration to `false`. Finally the password is written as normal via the `AAD-UserWritePasswordUsingObjectId` Technical Profile.
+If the `extension_requiresMigration` value is not `false` (default), then `AAD-FlipMigratedFlag` Technical Profile will execute. This will change `extension_requiresMigration` to `false`. Finally the password is written as normal via the `AAD-UserWritePasswordUsingObjectId` Technical Profile.
 
 ## Upload the policy to your tenant
 1.  In the [Azure portal](https://portal.azure.com), switch into the context of your Azure AD B2C tenant, and click on the  **Azure AD B2C** blade.
