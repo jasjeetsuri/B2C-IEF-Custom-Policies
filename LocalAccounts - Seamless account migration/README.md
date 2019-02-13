@@ -232,10 +232,10 @@ We must read the value of the extension attribute to determine if the account re
         <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="email" />
         <InputClaim ClaimTypeReferenceId="password" />
       </InputClaims>
-	  <OutputClaims>
-		  <OutputClaim ClaimTypeReferenceId="tokenSuccess" DefaultValue="false"/>
-		  <OutputClaim ClaimTypeReferenceId="migrationRequired"/>
-	  </OutputClaims> 
+      <OutputClaims>
+        <OutputClaim ClaimTypeReferenceId="tokenSuccess" DefaultValue="false"/>
+        <OutputClaim ClaimTypeReferenceId="migrationRequired"/>
+      </OutputClaims> 
       <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
     </TechnicalProfile>
   </TechnicalProfiles>
