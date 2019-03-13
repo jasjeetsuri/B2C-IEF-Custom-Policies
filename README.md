@@ -1,5 +1,6 @@
 # B2C IEF Custom Policy example scenarios
-** Latest updates here https://github.com/azure-ad-b2c **
+# Latest updates here https://github.com/azure-ad-b2c
+
 Azure AD B2C Identity Experience Framework Custom Policy examples for various scenarios.
 
 ## Disclaimer
